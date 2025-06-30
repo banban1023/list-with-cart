@@ -1,6 +1,6 @@
 <template>
   <div class="goodsCard">
-    <img class="goods_img" :src="require(`../assets/images/${item.image.mobile.split('/').pop()}`)" alt="">
+    <img :class="{ goods_img: true, goods_active: isBtnShow }" :src="require(`../assets/images/${item.image.mobile.split('/').pop()}`)" alt="">
     <!-- <button class="goods_add" @click="addCart"><span class="goods_cart_icon"></span>Add to Cart</button> -->
     <button class="goods_add" v-if="!isBtnShow" @click="addCart"><span class="goods_cart_icon"></span>Add to Cart</button>
     <div
@@ -63,6 +63,12 @@ export default {
   height: 344px;
   .goods_img {
     width: 328px;
+    border-radius: 10px;
+  }
+  .goods_active {
+    width: 328px;
+    height: 213px;
+    border: 2px solid rgb(200, 59, 14);
     border-radius: 10px;
   }
   .goods_add {

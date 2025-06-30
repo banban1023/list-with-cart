@@ -1,28 +1,28 @@
 <template>
   <div class="cart_list">
-    <h2 class="list_title">Your Cart(0)</h2>
+    <h2 class="list_title">Your Cart({{cartList.length}})</h2>
     <section class="list_empty" v-if="isEmpty">
       <img src="../assets/images/illustration-empty-cart.svg" alt="">
       <p class="list_empty_msg">Your added items will appear here</p>
     </section>
     <section class="list_all" v-else>
       <ul>
-        <li v-for="item in 3" :key="item">
+        <li v-for="(item, index) in cartList" :key="index">
           <div class="list_left">
-            <h3 class="list_goodsName">Classic Tiramisu</h3>
+            <h3 class="list_goodsName">{{item.name}}</h3>
             <p class="list_msg">
-              <span class="count">1x</span>
-              <span class="price">@$5.50</span>
-              <span class="price_all">$5.50</span>
+              <span class="count">{{item.quantity}}x</span>
+              <span class="price">@${{Number(item.price).toFixed(2)}}</span>
+              <span class="price_all">${{Number(item.price * item.quantity).toFixed(2)}}</span>
             </p>
           </div>
-          <button class="list_delete"></button>
+          <button class="list_delete" @click="deleteGoods(item.name)">delete</button>
         </li>
       </ul>
       <p class="order_total">
         Order Total
         <span class="total_count">
-          $46.50
+          ${{totalPrice}}
         </span>
       </p>
       <section class="delivery">
@@ -45,6 +45,17 @@ export default {
   methods: {
     showPopup () {
       this.show = true
+    },
+    deleteGoods (name) {
+      this.$store.dispatch('cart/deleteGoods', name)
+    }
+  },
+  computed: {
+    cartList () {
+      return this.$store.state.cart.cartList
+    },
+    totalPrice () {
+      return this.$store.getters['cart/totalPrice']
     }
   }
 }
@@ -99,6 +110,10 @@ export default {
               margin-left: 10px;
               font-weight: 600;
             }
+            .price {
+              width: 52px;
+              display: inline-block;
+            }
           }
         }
         .list_delete {
@@ -107,6 +122,7 @@ export default {
           height: 18px;
           border: 1px solid @Rose-500;
           border-radius: 10px;
+          font-size: 0;
           background: url('../assets/images/icon-remove-item.svg') no-repeat center center;
         }
       }

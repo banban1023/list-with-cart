@@ -1,10 +1,14 @@
 <template>
   <div class="cart">
-    <main>
-      <h1 class="cart_title">Desserts</h1>
-      <GoodsCard v-for="(item, index) in goodsList" :key="index" :item="item"></GoodsCard>
-    </main>
-    <CartList></CartList>
+    <div class="container">
+      <section>
+        <h1 class="cart_title">Desserts</h1>
+        <main>
+          <GoodsCard v-for="(item, index) in goodsList" :key="index" :item="item"></GoodsCard>
+        </main>
+      </section>
+      <CartList></CartList>
+    </div>
   </div>
 </template>
 

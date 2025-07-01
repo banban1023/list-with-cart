@@ -1,7 +1,8 @@
 <template>
   <div class="goodsCard">
-    <img :class="{ goods_img: true, goods_active: isBtnShow }" :src="require(`../assets/images/${item.image.mobile.split('/').pop()}`)" alt="">
-    <!-- <button class="goods_add" @click="addCart"><span class="goods_cart_icon"></span>Add to Cart</button> -->
+    <img :class="{ goods_img_mobile: true, goods_active: isBtnShow }" :src="require(`../assets/images/${item.image.mobile.split('/').pop()}`)" alt="">
+    <img :class="{ goods_img_tablet: true, goods_active: isBtnShow }" :src="require(`../assets/images/${item.image.tablet.split('/').pop()}`)" alt="">
+    <img :class="{ goods_img_desktop: true, goods_active: isBtnShow }" :src="require(`../assets/images/${item.image.desktop.split('/').pop()}`)" alt="">
     <button class="goods_add" v-if="!isBtnShow" @click="addCart"><span class="goods_cart_icon"></span>Add to Cart</button>
     <div
       class="goods_add"
@@ -61,9 +62,20 @@ export default {
   width: 328px;
   position: relative;
   height: 344px;
-  .goods_img {
+  .goods_img_mobile {
     width: 328px;
     border-radius: 10px;
+  }
+  .goods_img_tablet {
+    width: 427px;
+    border-radius: 10px;
+    display: none;
+  }
+  .goods_img_desktop {
+    width: 252px;
+    height: 240px;
+    border-radius: 10px;
+    display: none;
   }
   .goods_active {
     width: 328px;
@@ -132,6 +144,76 @@ export default {
       margin-top: 5px;
       font-weight: 600;
       color: @Red;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .goodsCard {
+    height: 100%;
+    width: 427px;
+    .goods_img_mobile {
+      display: none;
+    }
+    .goods_img_tablet {
+      display: block;
+      height: 100%;
+    }
+    .goods_active {
+      width: 427px;
+      height: 100%;
+      border: 2px solid rgb(200, 59, 14);
+      border-radius: 10px;
+    }
+    .goods_add {
+      width: 160px;
+      height: 44px;
+      position: absolute;
+      bottom: 90px;
+    }
+    .goods_msg {
+      .goods_type {
+        font-size: 16px;
+      }
+      .goods_name {
+        font-size: 25px;
+      }
+      .goods_price {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1250px) {
+  .goodsCard {
+    height: 380px;
+    width: 251px;
+    .goods_img_tablet {
+      display: none;
+    }
+    .goods_img_desktop {
+      display: block;
+    }
+    .goods_active {
+      width: 251px;
+      height: 240px;
+    }
+    .goods_add {
+      bottom: 118px;
+    }
+    .goods_msg {
+      .goods_type {
+        font-size: 14px;
+      }
+      .goods_name {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+      .goods_price {
+        font-size: 16px;
+        margin-top: 10px;
+      }
     }
   }
 }

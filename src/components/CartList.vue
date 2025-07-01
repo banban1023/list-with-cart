@@ -1,7 +1,7 @@
 <template>
   <div class="cart_list">
-    <h2 class="list_title">Your Cart({{cartList.length}})</h2>
-    <section class="list_empty" v-if="isEmpty">
+    <h2 class="list_title">Your Cart({{totalCount}})</h2>
+    <section class="list_empty" v-if="!totalCount">
       <img src="../assets/images/illustration-empty-cart.svg" alt="">
       <p class="list_empty_msg">Your added items will appear here</p>
     </section>
@@ -56,6 +56,9 @@ export default {
     },
     totalPrice () {
       return this.$store.getters['cart/totalPrice']
+    },
+    totalCount () {
+      return this.$store.getters['cart/totalCount']
     }
   }
 }
@@ -165,6 +168,25 @@ export default {
       background-color: @Red;
       border: none;
       font-size: 16px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .cart_list {
+    width: 427px;
+  }
+}
+
+@media (min-width: 1250px) {
+  .cart_list {
+    width: 385px;
+    height: 100%;
+    .list_all {
+      margin-top: 0;
+    }
+    .list_empty {
+      margin-top: 0;
     }
   }
 }

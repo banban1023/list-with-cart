@@ -59,6 +59,11 @@ export default {
       return state.cartList.reduce((total, item) => {
         return total + (item.price * item.quantity)
       }, 0).toFixed(2)
+    },
+    totalCount: (state) => {
+      return state.cartList.reduce((total, item) => {
+        return total + item.quantity
+      }, 0)
     }
   }
 }

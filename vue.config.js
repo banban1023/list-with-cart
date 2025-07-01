@@ -7,5 +7,8 @@ module.exports = defineConfig({
         additionalData: `@import "@/styles/commom.less";`
       }
     }
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/list-with-cart/'
+    : '/'
 })

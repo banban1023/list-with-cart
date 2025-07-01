@@ -78,8 +78,6 @@ export default {
     display: none;
   }
   .goods_active {
-    width: 328px;
-    height: 213px;
     border: 2px solid rgb(200, 59, 14);
     border-radius: 10px;
   }
@@ -94,7 +92,11 @@ export default {
     border-radius: 22px;
     border: 1px solid @Rose-400;
     background-color: #fff;
+    cursor: pointer;
     font-weight: 700;
+    &:hover {
+      border: 1px solid rgb(200,59,14);
+    }
     .goods_cart_icon {
       display: block;
       width: 21px;
@@ -108,6 +110,7 @@ export default {
       height: 18px;
       font-size: 0;
       border: 1px solid #fff;
+      cursor: pointer;
       border-radius: 50%;
       background: url('../assets/images/icon-increment-quantity.svg') no-repeat center center;
     }
@@ -115,6 +118,7 @@ export default {
       margin: 0 14px;
       width: 18px;
       height: 18px;
+      cursor: pointer;
       font-size: 0;
       border: 1px solid #fff;
       border-radius: 50%;

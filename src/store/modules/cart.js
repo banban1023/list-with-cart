@@ -38,6 +38,10 @@ export default {
     // 删除购物清单项目
     deleteGoods (state, productName) {
       state.cartList = state.cartList.filter(item => item.name !== productName)
+    },
+    // 清空购物车
+    clearCart (state) {
+      state.cartList = []
     }
   },
   actions: {
@@ -52,6 +56,9 @@ export default {
     },
     deleteGoods ({ commit }, productName) {
       commit('deleteGoods', productName)
+    },
+    clearCart ({ commit }) {
+      commit('clearCart')
     }
   },
   getters: {
